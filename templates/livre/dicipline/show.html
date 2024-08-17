@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Voir de dicipline </h5>
+      {% if error %}
+        {% include 'components/alert.html' with type="danger" content=msg icon='exclamation-triangle-fill' %}
+      {% endif %}
+      <!-- Floating Labels Form -->
+      <form method="post" action="{% url 'dicipline-create' %}" class="row g-3" >
+        {% csrf_token %}
+
+        
+       
+        
+        <div class="col-6">
+          <div class="form-floating">
+            <input type="text" id="{{ dicipline.code }}" class="form-control" value="{{ dicipline.code }}" disabled>
+            <label for="{{ dicipline.code }}">Code</label>
+          </div>
+        </div>
+
+      <div class="col-md-6">
+          <div class="form-floating">
+              <input type="text" id="{{ dicipline.name }}" class="form-control" value="{{ dicipline.name }}" disabled>
+              <label for="{{ dicipline.name }}">Nom</label>
+          </div>
+        </div>
+     
+      </form><!-- End floating Labels Form -->
+
+    </div>
+</div>
+
+{% endblock content %}

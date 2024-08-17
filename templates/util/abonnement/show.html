@@ -1,0 +1,132 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="section profile">
+    <div class="row">
+      <div class="col-xl-4">
+
+        <div class="card">
+          <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+            <img src="{% static 'images/profile/user.png' %}" alt="Profile" class="rounded-circle">
+            <h2>{{ abonne.nom|upper }} {{ abonne.prenom }}</h2>
+            <h3>
+              {% if is_professeur %} Professeur {% else %} Etudiant {% endif %}
+            </h3>
+            <div class="social-links mt-2">
+              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-xl-8">
+
+        <div class="card">
+          <div class="card-body pt-3">
+            <!-- Bordered Tabs -->
+            <ul class="nav nav-tabs nav-tabs-bordered">
+
+              <li class="nav-item">
+                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+              </li>
+
+              <li class="nav-item">
+                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#livre-emprunter">Les Livres Emprunter</button>
+              </li>
+
+            </ul>
+            <div class="tab-content pt-2">
+
+              <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                <h5 class="card-title">Profile Details</h5>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label ">Nom & Prenom</div>
+                  <div class="col-lg-9 col-md-8">{{ abonne.nom|upper }} {{ abonne.prenom }}</div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Filiere</div>
+                  <div class="col-lg-9 col-md-8">{{ abonne.filiere }}</div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Job</div>
+                  <div class="col-lg-9 col-md-8">{% if is_professeur %} Professeur {% else %} Etudiant {% endif %}</div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Pays</div>
+                  <div class="col-lg-9 col-md-8">Burkina Faso</div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Numero</div>
+                  <div class="col-lg-9 col-md-8">+(226) {{ abonne.numero }}</div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Email</div>
+                  <div class="col-lg-9 col-md-8">{{ abonne.email }}</div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-3 col-md-4 label">Date d'abonnement</div>
+                  <div class="col-lg-9 col-md-8">{{ abonne.date_creation }}</div>
+                </div>
+
+              </div>
+
+
+              <div class="tab-pane fade pt-2" id="livre-emprunter">
+                <!-- Change livre-emprunter Form -->
+                <h5 class="card-title">L'historique des emprunts de {{ abonne.nom|upper }} {{ abonne.prenom }}</h5>
+                <!-- Table with stripped rows -->
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Titre & Auteur</th>
+                      <th scope="col">Date Prise</th>
+                      <th scope="col">Date Remise</th>
+                      <th scope="col">Date Remit</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for emprunt in emprunts %}
+                      <tr>
+                        <th scope="row">1</th>
+                        <td >
+                          <b>{{ emprunt.exemplaire.book.title }}</b> <br>
+                          <span class="small" style="color: blue;">{{ emprunt.exemplaire.book.authors }}<i></i></span>
+
+                        </td>
+                        <td class="small">{{ emprunt.created_at }}</td>
+                        <td class="small">{{ emprunt.remise_date }}</td>
+                        <td class="small">{{ emprunt.return_at }}</td>
+                      </tr>
+                    {% endfor %}
+
+                  </tbody>
+                </table>
+                <!-- End Table with stripped rows -->
+
+              </div>
+
+            </div><!-- End Bordered Tabs -->
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+{% endblock content %}

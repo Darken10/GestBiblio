@@ -1,0 +1,67 @@
+<!-- Vertically centered Modal --> 
+<div class="modal fade" id="{{ name }}{{ id }}" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title "><b>Les Informations du Visiteur</b></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="{% url 'visiteur-index' %}" method="post">
+          {% csrf_token %}
+          <div class="modal-body row g-3">
+              
+               <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="nom" disabled value="{{ visiteur.nom }}">
+                  <label for="nom">Nom</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="prenom" disabled value="{{ visiteur.prenom }}">
+                  <label for="prenom">Prenom</label>
+                </div>
+              </div>
+    
+            <div class="col-md-6">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="Numero" disabled value="{{ visiteur.numero }}">
+                <label for="Numero">Numero</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="Filiere" disabled value="{{ visiteur.filiere }}">
+                  <label for="Filiere">Filiere</label>
+                </div>
+            </div>
+  
+            <div class="col-12">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="motif" disabled value="{{ visiteur.motif }}">
+                  <label for="motif">Motif</label>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="date_heure_arriver" disabled value="{{ visiteur.date_heure_arriver }}">
+                  <label for="date_heure_arriver">Venu a</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="form-floating">
+                      <input type="text" class="form-control" id="date_partie" disabled value="{{ visiteur.date_partie }}">
+                    <label for="date_partie">Partie a</label>
+                  </div>
+              </div>
+  
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div><!-- End Vertically centered Modal-->
+  

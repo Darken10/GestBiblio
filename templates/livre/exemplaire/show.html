@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Creation de Bibliotheque </h5>
+      {% if error %}
+        {% include 'components/alert.html' with type="danger" content=msg icon='exclamation-triangle-fill' %}
+      {% endif %}
+      <!-- Floating Labels Form -->
+      <form method="post" class="row g-3" >
+        {% csrf_token %}
+
+        <div class="col-md-6">
+            <div class="form-floating">
+                <input type="text" id="{{ bibliotheque.name }}" class="form-control" value="{{ bibliotheque.name }}" disabled>
+                <label for="{{ bibliotheque.name }}">Nom</label>
+            </div>
+          </div>
+       
+        <div class="col-6">
+          <div class="form-floating">
+            <input type="text" id="{{ bibliotheque.site }}" class="form-control" value="{{ bibliotheque.site }}" disabled>
+            <label for="{{ bibliotheque.site }}">Localisation</label>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-floating">
+                <input type="text" id="{{ bibliotheque.filiere }}" class="form-control" value="{{ bibliotheque.filiere }}" disabled>
+                <label for="{{ bibliotheque.filiere }}">Filiere</label>
+            </div>
+        </div>
+        
+      </form><!-- End floating Labels Form -->
+
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Creation d'Auteur </h5>
+      <!-- Floating Labels Form -->
+      <form method="post" action="{% url 'auteur-create' %}" class="row g-3" >
+        {% csrf_token %}
+
+        <div class="col-md-6">
+            <div class="form-floating">
+              {{ form.first_name }}
+              <label for="{{ form.first_name.id_for_label }}">Nom</label>
+            </div>
+          </div>
+       
+        <div class="col-6">
+          <div class="form-floating">
+            {{ form.last_name }}
+            <label for="{{ form.last_name.id_for_label }}">Prenom</label>
+          </div>
+        </div>
+        <div class="text-center d-flex justify-content-between">
+          <button type="reset" class="btn btn-secondary px-3">Anuller</button>
+          <button type="submit" class="btn btn-primary px-3">Enregistrer</button>
+        </div>
+      </form><!-- End floating Labels Form -->
+
+    </div>
+</div>
+
+{% endblock content %}

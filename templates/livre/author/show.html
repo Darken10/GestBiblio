@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Creation d'auteur </h5>
+
+      <!-- Floating Labels Form -->
+      <form method="post" class="row g-3" >
+        {% csrf_token %}
+
+        <div class="col-md-6">
+            <div class="form-floating">
+                <input type="text" id="{{ auteur.first_name }}" class="form-control" value="{{ auteur.first_name }}" disabled>
+                <label for="{{ auteur.first_name }}">Nom</label>
+            </div>
+          </div>
+       
+        <div class="col-6">
+          <div class="form-floating">
+            <input type="text" id="{{ auteur.last_name }}" class="form-control" value="{{ auteur.last_name }}" disabled>
+            <label for="{{ auteur.last_name }}">Localisation</label>
+          </div>
+        </div>
+
+        
+      </form><!-- End floating Labels Form -->
+
+    </div>
+</div>
+
+{% endblock content %}

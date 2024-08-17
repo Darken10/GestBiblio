@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Connexion</title>
+</head>
+<body>
+    <h2>Connexion Admin</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if error %}
+            <p style="color: red;">{{ msg }}</p>
+        {% endif %}
+        <button type="submit">Se connecter</button>
+    </form>
+</body>
+</html>

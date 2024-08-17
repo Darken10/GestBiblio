@@ -1,0 +1,104 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Creation d'un livre </h5>
+      <!-- Floating Labels Form -->
+      <form method="post"  class="row g-3" >
+        {% csrf_token %}
+        <div class="col-6">
+          <div class="form-floating">
+            {{ form.cote }}
+            <label for="{{ form.cote.id_for_label }}">Cote</label>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-floating">
+            {{ form.isbn }}
+            <label for="{{ form.isbn.id_for_label }}">ISBN</label>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-floating">
+              {{ form.title }}
+              <label for="{{ form.title.id_for_label }}">Titre</label>
+            </div>
+          </div>
+       
+        
+
+        <div class="col-md-12">
+            <div class="form-floating">
+                {{ form.desciption }}
+              <label for="{{ form.desciption.id_for_label }}">Une Description</label>
+            </div>
+        </div>
+
+        
+        <div class="col-md-6">
+          <div class="row d-flex justify-content-between align-items-center">
+            <div class="col-11">
+                <div class="form-floating">
+                  {{ form.dicipline }}
+                <label for="{{ form.dicipline.id_for_label }}">La Dicipline</label>
+                </div>
+            </div>
+            <div class="col-1 d-flex justify-content-center ">
+              <a href="{% url 'dicipline-create' %}" >
+                <span class="bi bi-plus-circle" style="font-size: 20px"><span>
+              </a>
+            </div>
+          </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-floating">
+            {{ form.published_at }}
+          <label for="{{ form.published_at.id_for_label }}">Date de Publication</label>
+        </div>
+      </div>
+      
+      <div class="col-md-12">
+        <div class="row d-flex justify-content-between align-items-center">
+              <div class="col-11">
+                <div class="form-floating">
+                  {{ form.maison_edition }}
+                <label for="{{ form.maison_edition.id_for_label }}">Maison D'Edition</label>
+              </div>
+          </div>
+          <div class="col-1 d-flex justify-content-center ">
+              <a href="{% url 'maison-edition-create' %}" >
+                <span class="bi bi-plus-circle" style="font-size: 20px"><span>
+              </a>
+            </div>
+        </div>
+
+      </div>
+
+      <div class="col-md-12">
+        <div class="row d-flex justify-content-between align-items-center">
+              <div class="col-11">
+                <div class="form-floating">
+                    {{ form.authors }}
+                  <label for="{{ form.authors.id_for_label }}">Auteur</label>
+                </div>
+              </div>
+              <div class="col-1 d-flex justify-content-center ">
+              <a href="{% url 'auteur-create' %}" >
+                <span class="bi bi-plus-circle" style="font-size: 20px"><span>
+              </a>
+            </div>
+        </div>
+      </div>
+        
+        <div class="text-center d-flex justify-content-between">
+          <button type="reset" class="btn btn-secondary px-3">Anuller</button>
+          <button type="submit" class="btn btn-primary px-3">Enregistrer</button>
+        </div>
+      </form><!-- End floating Labels Form -->
+
+    </div>
+</div>
+
+{% endblock content %}

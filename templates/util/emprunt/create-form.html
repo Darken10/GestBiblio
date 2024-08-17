@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Nouveau Abonne</h5>
+      {% if error %}
+        {% include 'components/alert.html' with type="danger" content=msg icon='exclamation-triangle-fill' %}
+      {% endif %}
+      <!-- Floating Labels Form -->
+      <form method="post" class="row g-3" >
+        {% csrf_token %}
+
+        <div class="col-md-6">
+            <div class="form-floating">
+              {{ form.nom }}
+              <label for="{{ form.nom.id_for_label }}">Nom</label>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-floating">
+              {{ form.prenom }}
+              <label for="{{ form.prenom.id_for_label }}">Prenom</label>
+            </div>
+          </div>
+
+        <div class="col-md-6">
+          <div class="form-floating">
+            {{ form.numero }}
+            <label for="{{ form.numero.id_for_label }}">Numero</label>
+          </div>
+        </div>
+       
+        <div class="col-6">
+          <div class="form-floating">
+            {{ form.email }}
+            <label for="{{ form.matricule.id_for_label }}">E-mail</label>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="form-floating">
+                {{ form.filiere }}
+              <label for="{{ form.filiere.id_for_label }}">Filiere</label>
+            </div>
+        </div>
+        
+        
+        <!--<div class="col-md-4">
+          <div class="form-floating mb-3">
+            <select class="form-select" id="floatingSelect" aria-label="State">
+              <option selected>New York</option>
+              <option value="1">Oregon</option>
+              <option value="2">DC</option>
+            </select>
+            <label for="floatingSelect">State</label>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-floating">
+            <input type="text" class="form-control" id="floatingZip" placeholder="Zip">
+            <label for="floatingZip">Zip</label>
+          </div>
+        </div>-->
+        <div class="text-center d-flex justify-content-between">
+          <button type="reset" class="btn btn-secondary px-3">Anuller</button>
+          <button type="submit" class="btn btn-primary px-3">Enregistrer</button>
+        </div>
+      </form><!-- End floating Labels Form -->
+
+    </div>
+</div>
+
+{% endblock content %}

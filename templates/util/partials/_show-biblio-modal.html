@@ -1,0 +1,22 @@
+<!-- Vertically centered Modal --> 
+<div class="modal fade" id="{{ name }}" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title "><b>La Supression du bibliothecaire</b></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="{% url 'deleteBiblio' %}" method="post">
+          {% csrf_token %}
+          <div class="modal-body  ">
+            Show
+          </div>
+          <input type="text" hidden name="biblio" value="{{ biblio.id }}">
+          <div class="modal-footer d-flex justify-content-between">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+            <button type="submit" class="btn btn-danger">Oui</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div><!-- End Vertically centered Modal-->

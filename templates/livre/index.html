@@ -1,0 +1,336 @@
+{% extends 'layout.html' %}
+{% load component_tags %}
+
+{% block content %}
+<section class="section dashboard">
+    <div class="row">
+
+      <!-- Left side columns -->
+      <div class="col-lg-12">
+        <div class="row">
+
+          <!-- Enregistrer Visiteurs Card -->
+          <div class="col-xxl-4 col-md-6">
+            <div class="card info-card sales-card">
+
+              <div class="filter">
+                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                  <li class="dropdown-header text-start">
+                    <h6>Filter</h6>
+                  </li>
+
+                  <li><a class="dropdown-item" href="#">Today</a></li>
+                  <li><a class="dropdown-item" href="#">This Month</a></li>
+                  <li><a class="dropdown-item" href="#">This Year</a></li>
+                </ul>
+              </div>
+
+              <div class="card-body">
+                <h5 class="card-title">Les Visiteurs <span>| Today</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bx bx-book-reader"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ visiteur_count }}</h6>
+                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                  </div>
+                </div>
+                <div class="pt-3 px-2">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add_visiteur">
+                        <i class="bi bi-plus-circle me-1"></i>
+                        Enregistrer un Visiteur
+                    </button>
+                    {% include 'livre/partials/_add-visitor-modal.html' with name='add_visiteur' biblio=biblio %}
+                </div>
+              </div>
+
+            </div>
+          </div><!-- End Enregistrer Visiteurs Card -->
+
+          <!-- Enregistrer Emprunt Card -->
+          <div class="col-xxl-4 col-md-6">
+            <div class="card info-card revenue-card">
+
+              <div class="filter">
+                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                  <li class="dropdown-header text-start">
+                    <h6>Filter</h6>
+                  </li>
+
+                  <li><a class="dropdown-item" href="#">Today</a></li>
+                  <li><a class="dropdown-item" href="#">This Month</a></li>
+                  <li><a class="dropdown-item" href="#">This Year</a></li>
+                </ul>
+              </div>
+
+              <div class="card-body">
+                <h5 class="card-title">Les Emprunts <span>| This Month</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="ri ri-book-3-fill"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ nb_emprunt }}</h6>
+                    <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                  </div>
+                </div>
+
+                <div class="pt-3 px-2">
+                    <a href="{% url 'emprunt-create' %}" class="btn btn-primary">
+                        <i class="bi bi-plus-circle me-1"></i>
+                        Enregistrer un Emprunt
+                    </a>
+                </div>
+
+              </div>
+
+            </div>
+          </div><!-- End Enregistrer Emprunt Card -->
+
+          <!-- Sales Card -->
+          <div class="col-xxl-4 col-md-6">
+            <div class="card info-card sales-card">
+
+              <div class="filter">
+                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                  <li class="dropdown-header text-start">
+                    <h6>Filter</h6>
+                  </li>
+
+                  <li><a class="dropdown-item" href="#">Today</a></li>
+                  <li><a class="dropdown-item" href="#">This Month</a></li>
+                  <li><a class="dropdown-item" href="#">This Year</a></li>
+                </ul>
+              </div>
+
+              <div class="card-body">
+                <h5 class="card-title">Les Abonnés <span>| Today</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-person-plus"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ abonne_count }}</h6>
+                    <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                  </div>
+                </div>
+
+                <div class="pt-3 px-2">
+                    <a href="{% url 'registerAbonne' %}" class="btn btn-primary">
+                        <i class="bi bi-plus-circle me-1"></i>
+                        Enregistrer un Abonné
+                    </a>
+                </div>
+
+              </div>
+
+            </div>
+          </div><!-- End Sales Card -->
+
+          <!-- Enregistrer un Livre Card -->
+          <div class="col-xxl-4 col-md-6">
+            <div class="card info-card revenue-card">
+
+              <div class="filter">
+                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                  <li class="dropdown-header text-start">
+                    <h6>Filter</h6>
+                  </li>
+
+                  <li><a class="dropdown-item" href="#">Today</a></li>
+                  <li><a class="dropdown-item" href="#">This Month</a></li>
+                  <li><a class="dropdown-item" href="#">This Year</a></li>
+                </ul>
+              </div>
+
+              <div class="card-body">
+                <h5 class="card-title">Les Exemplaire de Livre <span>| This Month</span></h5>
+
+                <div class="d-flex align-items-center">
+                  <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                    <i class="bx bx-book-bookmark"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6>{{ nb_livre|default_if_none:0 }}</h6>
+                    <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                  </div>
+                </div>
+
+                <div class="pt-3 px-2">
+                    <a href="{% url 'exemplaire-create' %}" class="btn btn-primary">
+                        <i class="bi bi-plus-circle me-1"></i>
+                        Enregistrer un Exemplaire 
+                    </a>
+                </div>
+
+              </div>
+
+            </div>
+          </div><!-- End Enregistrer un Livre Card -->
+
+        </div>
+      </div><!-- End Left side columns -->
+
+      <!-- les Statitique -->
+      <div class="col-lg-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Statistique</h5>
+
+            <!-- Column Chart -->
+            <div id="columnChart"></div>
+
+            <script>
+              document.addEventListener("DOMContentLoaded", () => {
+                new ApexCharts(document.querySelector("#columnChart"), {
+                  series: [{
+                    name: 'Abonnes',
+                    data: [
+                      {{ stat_visiteurs.jan }},
+                      {{ stat_visiteurs.fev }},
+                      {{ stat_visiteurs.mar }},
+                      {{ stat_visiteurs.avr }},
+                      {{ stat_visiteurs.mai }},
+                      {{ stat_visiteurs.jun }},
+                      {{ stat_visiteurs.jul }},
+                      {{ stat_visiteurs.aut }},
+                      {{ stat_visiteurs.sep }},
+                      {{ stat_visiteurs.oct }},
+                      {{ stat_visiteurs.nov }},
+                      {{ stat_visiteurs.dec }},
+                      ]
+                  }, {
+                    name: 'Visiteurs',
+                    data: [
+                      {{ stat_visiteurs.jan }},
+                      {{ stat_visiteurs.fev }},
+                      {{ stat_visiteurs.mar }},
+                      {{ stat_visiteurs.avr }},
+                      {{ stat_visiteurs.mai }},
+                      {{ stat_visiteurs.jun }},
+                      {{ stat_visiteurs.jul }},
+                      {{ stat_visiteurs.aut }},
+                      {{ stat_visiteurs.sep }},
+                      {{ stat_visiteurs.oct }},
+                      {{ stat_visiteurs.nov }},
+                      {{ stat_visiteurs.dec }},
+                      ]
+                  }, {
+                    name: 'Emprunts',
+                    data: [
+                      {{ stat_emprunts.jan }},
+                      {{ stat_emprunts.fev }},
+                      {{ stat_emprunts.mar }},
+                      {{ stat_emprunts.avr }},
+                      {{ stat_emprunts.mai }},
+                      {{ stat_emprunts.jun }},
+                      {{ stat_emprunts.jul }},
+                      {{ stat_emprunts.aut }},
+                      {{ stat_emprunts.sep }},
+                      {{ stat_emprunts.oct }},
+                      {{ stat_emprunts.nov }},
+                      {{ stat_emprunts.dec }},
+                      ]
+                  }],
+                  chart: {
+                    type: 'bar',
+                    height: 350
+                  },
+                  plotOptions: {
+                    bar: {
+                      horizontal: false,
+                      columnWidth: '55%',
+                      endingShape: 'rounded'
+                    },
+                  },
+                  dataLabels: {
+                    enabled: false
+                  },
+                  stroke: {
+                    show: true,
+                    width: 2,
+                    colors: ['transparent']
+                  },
+                  xaxis: {
+                    categories: ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aut','Sep','Oct','Nov','Dec'],
+                  },
+                  yaxis: {
+                    title: {
+                      text: '$ (thousands)'
+                    }
+                  },
+                  fill: {
+                    opacity: 1
+                  },
+                  tooltip: {
+                    y: {
+                      formatter: function(val) {
+                        return " " + val + " "
+                      }
+                    }
+                  }
+                }).render();
+              });
+            </script>
+            <!-- End Column Chart -->
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Statistique par moi des Emprunt</h5>
+
+              <!-- Bar Chart -->
+              <div id="barChart"></div>
+
+              <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                  new ApexCharts(document.querySelector("#barChart"), {
+                    series: [{
+                      data: [100, 430, 448, 470, 540, 580, 690, 1100, 1200, 180]
+                    }],
+                    chart: {
+                      type: 'bar',
+                      height: 350
+                    },
+                    plotOptions: {
+                      bar: {
+                        borderRadius: 4,
+                        horizontal: true,
+                      }
+                    },
+                    dataLabels: {
+                      enabled: false
+                    },
+                    xaxis: {
+                      categories: ['South Korea', 'Canada', 'United Kingdom', 'Netherlands', 'Italy', 'France', 'Japan',
+                        'United States', 'China', 'Germany'
+                      ],
+                    }
+                  }).render();
+                });
+              </script>
+              <!-- End Bar Chart -->
+
+            </div>
+          </div>
+        </div>
+
+    </div>
+  </section>
+{% endblock content %}

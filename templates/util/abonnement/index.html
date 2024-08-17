@@ -1,0 +1,121 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% load component_tags %}
+
+{% block content %}
+
+{% if success %}
+    {% render_component 'alert' type='success' message=message %}
+{% endif %}
+<section class="section">
+    <div class="row">
+      <div class="col-lg-12">
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Abonnements</h5>
+            <div class="d-flex justify-content-between align-items-center" >
+                <p>La Liste de tout les abonnes de votre Bibiotheque</p>
+                <div class="pt-3 px-2">
+                    <a href="{% url 'registerAbonne' %}" class="btn btn-primary">
+                        <i class="bi bi-plus-circle me-1"></i>
+                        Ajouter
+                    </a>
+                    <!--<button type="button"  data-bs-toggle="modal" data-bs-target="#add_biblio">
+                         
+                    </button>-->
+                     
+                    {# {% include 'util/partials/_add-biblio-modal.html' with name='add_biblio' %} #}
+                </div>
+            </div>
+            <!--<p>Add lightweight datatables to your project with using the <a href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to conver to a datatable. Check for <a href="https://fiduswriter.github.io/simple-datatables/demos/" target="_blank">more examples</a>.</p>
+
+            <!-- Table with stripped rows -->
+            <table class="table datatable table-striped">
+              <thead>
+                <tr>
+                    <th scope="col">Matricule</th>
+                    <th scope="col">photo</th>
+                  <th><b>N</b>om & <b>P</b>renom.</th>
+                  <th>Numero</th>
+                  <th>Filiere</th>
+
+                  <th data-type="date" data-format="YYYY/DD/MM HH:II:SS">Date Abonnement</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for abonne in abonnes %}
+                <tr class="align-items-center">
+                    <th scope="row">{{ abonne.id|default_if_none:'-' }}</th>
+                    <th scope="row small">
+                        <img style="width: 30px;" src="{% static 'images/profile/user.png' %}" class="rounded-circle">
+                    </th>
+                    <td>{{ abonne.nom|upper }} {{ abonne.prenom }}</td> 
+                    <td>{{ abonne.numero|default_if_none:'-' }}</td>
+                    <td>{{ abonne.filiere|default_if_none:'-' }}</td>
+                    <td>
+                        {{ abonne.date_creation|default_if_none:'-' }}
+                    </td>
+                    <td>
+                        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                            <i class="bi bi-three-dots-vertical"></i>
+                          </a><!-- End Profile Iamge Icon -->
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                            <li class="dropdown-header">
+                              <h6><b>{{ abonne.nom }} {{ abonne.prenom }}</b></h6>
+                              <span class="small">Abonné</span>
+                            </li>
+                            <li>
+                              <hr class="dropdown-divider">
+                            </li>
+                
+                            <li>
+                              <a href="{% url 'abonnement-show' id=abonne.id %}"  class="dropdown-item d-flex align-items-center">
+                                <i class="bi bi-eye"></i>
+                                <span>Voir</span>
+                              </a>
+                            </li>
+                            <li>
+                              <hr class="dropdown-divider">
+                            </li>
+                
+                            <li>
+                              <a class="dropdown-item d-flex align-items-center" href="{% url 'abonnement-update' id=abonne.id %}">
+                                <i class="bi bi-pencil-square"></i>
+                                <span>Modifier</span>
+                              </a>
+                            </li>
+                            <li>
+                              <hr class="dropdown-divider">
+                            </li>
+                
+                            <li>
+                              <button type="button"  data-bs-toggle="modal" data-bs-target="#supprimer_{{ abonne.id }}"  class="dropdown-item d-flex align-items-center">
+                                <i class="bi bi-trash"></i>
+                                <span>Supprimer</span>
+                              </button>
+        
+                            </li>
+                           
+                
+                          </ul><!-- End Profile Dropdown Items -->
+                    </td>
+                  </tr>
+                  {% include 'util/partials/_remove-abonne-modal.html' with name='supprimer_' id=abonne.id abonne=abonne %}
+                  {% include 'util/partials/_show-biblio-modal.html' with name=biblio.id %}
+                {% endfor %}
+                
+              </tbody>
+            </table>
+            <!-- End Table with stripped rows -->
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+{% endblock content %}

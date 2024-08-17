@@ -1,0 +1,67 @@
+<!-- Vertically centered Modal --> 
+<div class="modal fade" id="{{ name }}" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title "><b>Les Informations du Visiteur</b></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="{% url 'registerVisiteur' %}" method="post">
+          {% csrf_token %}
+          <div class="modal-body">
+            <div class="row g-3">
+
+              <div class="col-md-6">
+                <div class="form-floating">
+                  {{ form.nom }}
+                  <label for="{{ form.nom.id_for_label }}">Nom</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  {{ form.prenom }}
+                  <label for="{{ form.prenom.id_for_label }}">Prenom</label>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-floating">
+                  {{ form.filiere }}
+                  <label for="{{ form.filiere.id_for_label }}">La Filiere</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating">
+                  {{ form.numero }}
+                  <label for="{{ form.numero.id_for_label }}">Numero</label>
+                </div>
+              </div>
+
+              <div class="col-md-12">
+                <div class="form-floating">
+                  {{ form.motif }}
+                  <label for="{{ form.motif.id_for_label }}">Motif</label>
+                </div>
+              </div>
+              {% comment " ces a gerer apres" %}
+              
+              <div class="col-md-12">
+                <div class="form-floating">
+                  {{ form.date_partie }}
+                  <label for="{{ form.date_partie.id_for_label }}">Parti a ...</label>
+                  
+                </div>
+              </div>
+              {% endcomment %}
+            </div>
+            
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div><!-- End Vertically centered Modal-->

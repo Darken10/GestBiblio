@@ -1,0 +1,29 @@
+<!-- Vertically centered Modal -->
+<div class="modal fade" id="{{ name }}{{ id }}" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title "><b>La Supression d'une Exemplaire</b></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="{% url 'exemplaire-delete' %}" method="post">
+          {% csrf_token %}
+          <div class="modal-body  ">
+            <div class="d-flex justify-content-center">
+                <div class="py-2 px-3" style="border: 1px solid; content:icon; width: fit-content; border-radius: 100%; background-color: #8b262650; ">
+                    <i class="bi bi-exclamation-triangle-fill  " style="font-size: xx-large; color:red"></i>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center text-align-center">
+                <p>Etes vous vraiment sur de vouloir supprimer la Exemplaire<b>{{ exemplaire.code }} de {{ exemplaire.book.title }}</b> </p>
+            </div>
+          </div>
+          <input type="text" hidden name="exemplaire" value="{{ exemplaire.pk }}">
+          <div class="modal-footer d-flex justify-content-between">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Non</button>
+            <button type="submit" class="btn btn-danger">Oui</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div><!-- End Vertically centered Modal-->
